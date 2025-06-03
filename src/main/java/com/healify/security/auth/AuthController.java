@@ -6,6 +6,7 @@ import com.healify.security.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,17 +30,23 @@ public class AuthController {
       .specialization(request.getSpecialization())
       .location(request.getLocation())
       .build();
+    System.out.println("user : " + user.getEmail());
     userRepository.save(user);
     String token = jwtService.generateToken(user.getEmail());
-    return new AuthResponse(token);
+    return new AuthResponse(token, user);
   }
   
   @PostMapping("/login")
   public AuthResponse login(@RequestBody AuthRequest request) {
+    System.out.println("login called");
     authenticationManager.authenticate(
       new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
     );
+    
+    User user = userRepository.findByEmail(request.getEmail())
+      .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    
     String token = jwtService.generateToken(request.getEmail());
-    return new AuthResponse(token);
+    return new AuthResponse(token, user);
   }
 }

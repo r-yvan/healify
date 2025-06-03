@@ -52,7 +52,8 @@ public class AppointmentServiceImpl implements AppointmentService {
   @Override
   @Transactional
   public void respondToAppointment(Long appointmentId, boolean accept, String doctorEmail) {
-    Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow();
+    Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(()->new RuntimeException("Appointment not found."));
+    
     User doctor = userRepository.findByEmail(doctorEmail).orElseThrow();
     
     if (!appointment.getDoctor().getId().equals(doctor.getId())) {

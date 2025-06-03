@@ -19,10 +19,10 @@ public class PatientController {
   private final UserRepository userRepository;
   
   @GetMapping("/doctors")
-  public List<User> getDoctors(@RequestParam String specialization,
-                               @RequestParam String location) {
-    return userRepository.findByRoleAndSpecializationContainingIgnoreCaseAndLocationContainingIgnoreCase(
-      User.Role.DOCTOR, specialization, location);
+  public List<User> getDoctors(
+                               ) {
+    return userRepository.findByRole(
+      User.Role.DOCTOR);
   }
   
   @PostMapping("/appointments")

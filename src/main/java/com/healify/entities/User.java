@@ -3,6 +3,7 @@ package com.healify.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
 @Table(name = "users")
 @Getter
@@ -11,7 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class User {
-  
   public enum Role {
     PATIENT, DOCTOR
   }
@@ -30,8 +30,6 @@ public class User {
   @Enumerated(EnumType.STRING)
   private Role role;
   
-  // Only applicable for doctors
   private String specialization;
-  
   private String location;
 }

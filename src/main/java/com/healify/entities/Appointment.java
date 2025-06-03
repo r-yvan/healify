@@ -2,7 +2,6 @@ package com.healify.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Appointment {
-  
   public enum Status {
     PENDING, ACCEPTED, REJECTED
   }
