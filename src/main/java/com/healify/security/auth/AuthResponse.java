@@ -1,4 +1,3 @@
-// AuthResponse.java
 package com.healify.security.auth;
 
 import com.healify.entities.User;

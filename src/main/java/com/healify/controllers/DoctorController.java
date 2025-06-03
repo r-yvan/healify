@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/api/doctor")
 @RequiredArgsConstructor
 public class DoctorController {
-  
   private final AppointmentService appointmentService;
   
   @GetMapping("/appointments")
@@ -26,14 +25,12 @@ public class DoctorController {
   public ResponseEntity<Map<String, String>> respondToAppointment(
     @PathVariable Long id,
     @RequestParam boolean accept,
-    @RequestParam String doctorEmail) {
-    
+    @RequestParam String doctorEmail
+  ) {
     appointmentService.respondToAppointment(id, accept, doctorEmail);
     
     Map<String, String> response = new HashMap<>();
     response.put("message", "Appointment response recorded successfully.");
-    
     return ResponseEntity.ok(response);
   }
-
 }
