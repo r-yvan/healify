@@ -89,6 +89,8 @@ const PatientDashboard = () => {
     queryKey: ["doctors", searchFilters],
     queryFn: () =>
       patientAPI.getDoctors(
+        searchFilters.specialization,
+        searchFilters.location
       ),
   });
 

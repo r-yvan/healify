@@ -126,11 +126,15 @@ export const authAPI = {
 
 export const patientAPI = {
   getDoctors: (
+    specialization?: string,
+    location?: string
   ): Promise<Doctor[]> => {
     const params = new URLSearchParams();
-    // if (location) params.append("location", location);
+    if (specialization && specialization !== "all")
+      params.append("specialization", specialization);
+    if (location) params.append("location", location);
 
-    return apiRequest<Doctor[]>(`/api/patient/doctors`);
+    return apiRequest<Doctor[]>(`/api/patient/doctors?${params.toString()}`);
   },
 
   bookAppointment: (

@@ -109,7 +109,7 @@ const DoctorDashboard = () => {
 
         {/* Enhanced Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-blue-600/20 to-blue-700/20 border-blue-500/20">
+          <Card className="bg-[#60a5fa10] border-[#60a5fa10]">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -121,7 +121,7 @@ const DoctorDashboard = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-gradient-to-br from-yellow-600/20 to-yellow-700/20 border-yellow-500/20">
+          <Card className="bg-[#facc1510] border-[#facc1510]">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -133,7 +133,7 @@ const DoctorDashboard = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-gradient-to-br from-green-600/20 to-green-700/20 border-green-500/20">
+          <Card className="bg-[#4ade8010] border-[#4ade8010]">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -145,7 +145,7 @@ const DoctorDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-600/20 to-purple-700/20 border-purple-500/20">
+          <Card className="bg-[#c084fc10] border-[#c084fc10]">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
