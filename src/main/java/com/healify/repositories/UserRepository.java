@@ -8,8 +8,12 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
   Optional<User> findByEmail(String email);
+  
   List<User> findByRole(User.Role role);
-  List<User> findByRoleAndLocationContainingIgnoreCase(
-    User.Role role, String location
-  );
+  
+  List<User> findByRoleAndSpecializationContainingIgnoreCase(User.Role role, String specialization);
+  
+  List<User> findByRoleAndLocationContainingIgnoreCase(User.Role role, String location);
+  
+  List<User> findByRoleAndSpecializationContainingIgnoreCaseAndLocationContainingIgnoreCase(User.Role role, String specialization, String location);
 }

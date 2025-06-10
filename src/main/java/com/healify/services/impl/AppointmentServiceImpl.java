@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
-  
   private final UserRepository userRepository;
   private final AppointmentRepository appointmentRepository;
   
@@ -36,9 +35,6 @@ public class AppointmentServiceImpl implements AppointmentService {
       .build();
     
     appointmentRepository.save(appointment);
-    
-    // TODO: Trigger email to doctor here
-    
     return mapToDTO(appointment);
   }
   
@@ -52,13 +48,11 @@ public class AppointmentServiceImpl implements AppointmentService {
   @Override
   @Transactional
   public void respondToAppointment(Long appointmentId, boolean accept, String doctorEmail) {
-    Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(()->new RuntimeException("Appointment not found."));
-    
+    Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new RuntimeException("Appointment not found."));
     User doctor = userRepository.findByEmail(doctorEmail).orElseThrow();
     
-    if (!appointment.getDoctor().getId().equals(doctor.getId())) {
+    if (!appointment.getDoctor().getId().equals(doctor.getId()))
       throw new RuntimeException("Not authorized.");
-    }
     
     appointment.setStatus(accept ? Appointment.Status.ACCEPTED : Appointment.Status.REJECTED);
     appointmentRepository.save(appointment);

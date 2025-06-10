@@ -2,15 +2,16 @@ package com.healify.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "appointments")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Table(name = "appointments")
 public class Appointment {
   public enum Status {
     PENDING, ACCEPTED, REJECTED

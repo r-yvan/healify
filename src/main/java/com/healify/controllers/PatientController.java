@@ -14,20 +14,29 @@ import java.util.List;
 @RequestMapping("/api/patient")
 @RequiredArgsConstructor
 public class PatientController {
-  
   private final AppointmentService appointmentService;
   private final UserRepository userRepository;
   
   @GetMapping("/doctors")
   public List<User> getDoctors(
-                               ) {
-    return userRepository.findByRole(
-      User.Role.DOCTOR);
+    @RequestParam(required = false) String specialization,
+    @RequestParam(required = false) String location
+  ) {
+    if (specialization != null && !specialization.isEmpty() && location != null && !location.isEmpty()) {
+      return userRepository.findByRoleAndSpecializationContainingIgnoreCaseAndLocationContainingIgnoreCase(User.Role.DOCTOR, specialization, location);
+    } else if (specialization != null && !specialization.isEmpty()) {
+      return userRepository.findByRoleAndSpecializationContainingIgnoreCase(User.Role.DOCTOR, specialization);
+    } else if (location != null && !location.isEmpty()) {
+      return userRepository.findByRoleAndLocationContainingIgnoreCase(User.Role.DOCTOR, location);
+    }
+    return userRepository.findByRole(User.Role.DOCTOR);
   }
   
   @PostMapping("/appointments")
-  public AppointmentResponseDTO bookAppointment(@RequestBody AppointmentRequestDTO dto,
-                                                @RequestParam String patientEmail) {
+  public AppointmentResponseDTO bookAppointment(
+    @RequestBody AppointmentRequestDTO dto,
+    @RequestParam String patientEmail
+  ) {
     return appointmentService.bookAppointment(dto, patientEmail);
   }
 }

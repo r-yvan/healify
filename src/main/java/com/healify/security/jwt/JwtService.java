@@ -1,7 +1,7 @@
-// JwtService.java
 package com.healify.security.jwt;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-  
   private final String SECRET_KEY = "my-super-secret-key-which-needs-to-be-very-long-123456";
   
   private Key getSignInKey() {

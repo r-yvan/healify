@@ -1,7 +1,10 @@
 package com.healify.security.auth;
 
 import com.healify.entities.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
